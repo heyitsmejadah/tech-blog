@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {Post, User, Comment} = require("../models");
+const {Post, User, Comment} = require("../../models");
 
 // login
 router.get("/login", (req, res) => {
@@ -11,9 +11,9 @@ router.get("/login", (req, res) => {
 });
 
 // return all posts
-router.get("/", async (req,res) => {
+router.get("/", async (req, res) => {
     try {
-        const postData = await Post.findAll ({
+        const postData = await Post.findAll({
             include: [{
                 model: User,
                 attributes: ["name"]
@@ -21,7 +21,7 @@ router.get("/", async (req,res) => {
         });
 
         const posts = postData.map((post) =>
-        post.get({plain: true})
+            post.get({ plain: true })
         );
 
         res.render("homepage", {
@@ -29,9 +29,11 @@ router.get("/", async (req,res) => {
             loggedIn: req.session.loggedIn
         });
     } catch (err) {
-        res.status(500).json(err);
+        console.error(err);  // log error for debugging
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
 
 // return one post
 router.get("/post/:id", async (req, res) => {
