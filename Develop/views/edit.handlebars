@@ -1,0 +1,21 @@
+<div class="col-12 p-4">
+    <h4>Title</h4>
+    <textarea class="form-control mb-3" name="title" id="title" rows="1">{{post.title}}</textarea>
+    <h4>Post</h4>
+    <textarea class="form-control mb-5" name="content" id="content" rows="5">{{post.content}}</textarea>
+    <div class="d-grid gap-2">
+        {{#if newPost}}
+        <button class="btn btn-success" id="createPost">Create Post</button>
+        <button class="btn btn-danger" id="cancelPost">Cancel</button>
+        {{else}}
+        <button class="btn btn-success" id="updatePost">Update Post</button>
+        <button class="btn btn-danger" id="deletePost">Delete Post</button>
+        {{/if}}
+    </div>
+</div>
+
+{{#if newPost}}
+<script src="../public/js/post.js"></script>
+{{else}}
+<script src="../models/post.js"></script>
+{{/if}}

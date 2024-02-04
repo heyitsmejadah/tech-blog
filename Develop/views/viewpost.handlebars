@@ -1,0 +1,32 @@
+<!-- Post Card -->
+<div class="card col-11 m-4 p-1">
+    <div class="card-title d-flex justify-content-between p-2">
+        <p class="h2 text-dark">{{post.title}}</p>
+        <p class="h6 text-warning">(Posted by {{post.user.name}} on {{format_datetime post.date_created}})</p>
+    </div>
+    <div class="card-body">{{post.content}}</div>
+</div>
+
+<!-- Comments Card -->
+<div class="card col-11 m-4 p-1">
+    <div class="card-title d-flex justify-content-between p-2">
+        <p class="h2 text-warning">Comments</p>
+    </div>
+
+    <!-- Comments List -->
+    <div class="card-body">
+        {{#each post.comments as |comment|}}
+            {{> comment}}
+        {{/each}}
+    </div>
+
+    <div class="card-footer">
+        <textarea class="form-control mb-3" name="comment" id="comment" rows="3" placeholder="Add a comment..."></textarea>
+        <button class="btn btn-warning" id="postComment">Post Comment</button>
+    </div>
+</div>
+
+{{> comment}}
+
+
+<script src="../public/js/comment.js"></script>

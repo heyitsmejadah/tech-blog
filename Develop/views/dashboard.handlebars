@@ -1,0 +1,25 @@
+{{#if posts.length}}
+  <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+    {{#each posts as |post|}}
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+            <p class="card-text">{{content}}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Posted by {{post.User.name}}</small>
+            <a href="/dashboard/post/{{post.id}}" class="btn btn-outline-primary float-end"><img src="/images/edit.png" alt="edit"></a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <div class="card col-11 m-4 p-1">
+    <div class="card-title d-flex justify-content-between p-2 h4">
+      
+    </div>
+    <div class="card-body"></div>
+  </div>
+{{/if}}
