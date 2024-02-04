@@ -10,9 +10,12 @@ router.get("/login", (req, res) => {
     }
 });
 
-// return all posts
 router.get("/", async (req, res) => {
     try {
+        if (!req.session.loggedIn) {
+            // If not logged in, redirect to the login page
+            return res.redirect("/login");
+        }
         const postData = await Post.findAll({
             include: [{
                 model: User,
