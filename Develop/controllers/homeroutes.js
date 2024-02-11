@@ -34,40 +34,40 @@ router.get('/', async (req, res) => {
 });
 
 // get one post
-router.get('/post/:id', async (req, res) => {
+// return one post
+router.get("/post/:id", async (req, res) => {
     if (!req.session.loggedIn) {
-        res.redirect('/login');
+        res.redirect("/login");
     } else {
         try {
             const postData = await Post.findByPk(req.params.id, {
                 include: [
                     {
                         model: User,
-                        attributes: ['name']
+                        attributes: ["name"]
                     },
                     {
                         model: Comment,
                         include: {
                             model: User,
-                            attributes: ['name']
+                            attributes: ["name"]
                         }
                     },
                 ],
             });
 
             if (postData) {
-                const post = postData.get({ plain: true });
-
-                res.render('viewpost', {
-                    post,
+                const post = postData.get({plain: true});
+                res.render("viewpost", {
                     loggedIn: req.session.loggedIn
                 });
             } else {
-                res.status(404).json({ error: 'Post not found' });
+                res.status(404)
             }
-        } catch (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Internal Server Error' });
+        } catch (error) {
+            // Handle errors
+            console.error(error);
+            res.status(500).send("Internal Server Error");
         }
     }
 });

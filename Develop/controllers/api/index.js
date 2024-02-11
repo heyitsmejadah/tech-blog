@@ -12,10 +12,6 @@ router.get("/login", (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            // If not logged in, redirect to the login page
-            return res.redirect("/login");
-        }
         const postData = await Post.findAll({
             include: [{
                 model: User,
@@ -38,42 +34,5 @@ router.get("/", async (req, res) => {
 });
 
 
-// return one post
-router.get("/post/:id", async (req, res) => {
-    if (!req.session.loggedIn) {
-        res.redirect("/login");
-    } else {
-        try {
-            const postData = await Post.findByPk(req.params.id, {
-                include: [
-                    {
-                        model: User,
-                        attributes: ["name"]
-                    },
-                    {
-                        model: Comment,
-                        include: {
-                            model: User,
-                            attributes: ["name"]
-                        }
-                    },
-                ],
-            });
-
-            if (postData) {
-                const post = postData.get({plain: true});
-                res.render("viewpost", {
-                    loggedIn: req.session.loggedIn
-                });
-            } else {
-                res.status(404)
-            }
-        } catch (error) {
-            // Handle errors
-            console.error(error);
-            res.status(500).send("Internal Server Error");
-        }
-    }
-});
 
 module.exports = router;
