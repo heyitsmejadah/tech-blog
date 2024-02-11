@@ -2,7 +2,7 @@
 <div class="card col-11 m-4 p-1">
     <div class="card-title d-flex justify-content-between p-2">
         <p class="h2 text-dark">{{post.title}}</p>
-        <p class="h6 text-warning">(Posted by {{post.user.name}} on {{format_datetime post.date_created}})</p>
+        <p class="h6 text-warning">(Posted by {{post.user.name}} on {{format_datetime}} {{post.date_created}})</p>
     </div>
     <div class="card-body">{{post.content}}</div>
 </div>

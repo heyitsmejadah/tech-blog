@@ -10,7 +10,7 @@
             <p class="card-text">{{content}}</p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">Posted by {{post.User.name}}</small>
+            <small class="text-muted">Posted by {{post.User.name}} on {{post.date_created}}</small>
             <a href="/dashboard/post/{{post.id}}" class="btn btn-outline-primary float-end"><img src="/images/edit.png" alt="edit"></a>
           </div>
         </div>
@@ -20,7 +20,7 @@
 {{else}}
   <div class="card col-11 m-4 p-1">
     <div class="card-title d-flex justify-content-between p-2 h4">
-      
+      <p>No posts to display</p>
     </div>
     <div class="card-body"></div>
   </div>
