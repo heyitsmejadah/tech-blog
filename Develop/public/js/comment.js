@@ -29,8 +29,4 @@ const postCommentHandler = async (event) => {
     }
 };
 
-const postCommentButton = document.querySelector("#postComment");
-
-if (postCommentButton) {
-    postCommentButton.addEventListener("click", postCommentHandler);
-};
+document.querySelector("#postComment").addEventListener("click", postCommentHandler);
