@@ -72,7 +72,7 @@ router.get('/post/:id', async (req, res) => {
 });
 
 // get all posts for a user
-router.get('/dashboard', async (req, res) => {
+router.get('/profile', async (req, res) => {
     if (!req.session.loggedIn) {
         res.redirect('/login');
     } else {
@@ -156,4 +156,17 @@ router.delete('/post/:id', async (req, res) => {
     }
 });
 
+router.post("/api/users", async (req, res) => {
+    try {
+        const {name, password} = req.body;
+        const userDetails = await User.create({
+            name, password
+        });
+        console.log(userDetails);
+        console.log("i am handling api/users?? got em",req.body);
+        req.session.loggedIn = true;
+    } catch (e) {
+        console.log("lol error??", e);
+    }
+});
 module.exports = router;
