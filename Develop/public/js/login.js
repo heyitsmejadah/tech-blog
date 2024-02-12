@@ -20,6 +20,7 @@ const loginFormHandler = async (event) => {
         res.response.json({ error: 'Login failed' });
       }
     }
+    console.log("Login button clicked");
   };
   
   const signupFormHandler = async (event) => {
@@ -42,6 +43,7 @@ const loginFormHandler = async (event) => {
         response.json({ error: 'Signup failed' });
       }
     }
+    console.log("Sign Up button clicked");
   };
   
   document
