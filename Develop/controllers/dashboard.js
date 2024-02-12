@@ -1,6 +1,18 @@
 const router = require('express').Router();
 const {User, Post} = require('../models');
 
+
+router.get("/", async (req, res) => {
+    try {
+        res.render("dashboard", {
+            loggedIn: req.session.loggedIn
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 // get all posts for a user
 router.get('/profile', async (req, res) => {
     if (!req.session.loggedIn) {
